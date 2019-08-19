@@ -39,10 +39,10 @@
 			"url": "https://github.com/luolingchun/rq-docs-cn"
 		},
 		"donate": {
-			"wechat": "image/wechat.jpg",
-			"alipay": "image/alipay.jpg",
+			"wechat": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/wechat.jpg",
+			"alipay": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/alipay.jpg",
 			"title": "",
-			"button": "赏",
+			"button": "Donate",
 			"alipayText": "支付宝打赏",
 			"wechatText": "微信打赏"
 		}
