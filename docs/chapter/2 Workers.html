@@ -1,0 +1,613 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>2 Workers · PYQGIS开发者手册-中文</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="llc">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-auto-scroll-table/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/lightbox.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3 结果.html" />
+    
+    
+    <link rel="prev" href="1 队列.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/luolingchun/rq-docs-cn" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    0 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="1 队列.html">
+            
+                <a href="1 队列.html">
+            
+                    
+                    1 队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="2 Workers.html">
+            
+                <a href="2 Workers.html">
+            
+                    
+                    2 Workers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="3 结果.html">
+            
+                <a href="3 结果.html">
+            
+                    
+                    3 结果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="4 任务.html">
+            
+                <a href="4 任务.html">
+            
+                    
+                    4 任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="5 监控.html">
+            
+                <a href="5 监控.html">
+            
+                    
+                    5 监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="6 连接.html">
+            
+                <a href="6 连接.html">
+            
+                    
+                    6 连接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="7 异常.html">
+            
+                <a href="7 异常.html">
+            
+                    
+                    7 异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="8 测试.html">
+            
+                <a href="8 测试.html">
+            
+                    
+                    8 测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >2 Workers</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <html><head></head><body><h1 id="workers">Workers</h1>
+<p>worker&#x662F;&#x4E00;&#x4E2A;Python&#x8FDB;&#x7A0B;&#xFF0C;&#x901A;&#x5E38;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#xFF0C;&#x5E76;&#x4E14;&#x4EC5;&#x4F5C;&#x4E3A;&#x5B50;&#x8FDB;&#x7A0B;&#xFF08;work horse&#xFF09;&#x5B58;&#x5728;&#xFF0C;&#x4EE5;&#x6267;&#x884C;&#x4F60;&#x4E0D;&#x5E0C;&#x671B;&#x5728;Web&#x8FDB;&#x7A0B;&#x5185;&#x6267;&#x884C;&#x7684;&#x5197;&#x957F;&#x6216;&#x963B;&#x585E;&#x4EFB;&#x52A1;&#x3002;</p>
+<h2 id="&#x542F;&#x52A8;workers">&#x542F;&#x52A8;workers</h2>
+<p>&#x5F00;&#x59CB;&#x8BA1;&#x7B97;&#x5DE5;&#x4F5C;&#xFF0C;&#x53EA;&#x9700;&#x4ECE;&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x542F;&#x52A8;&#x4E00;&#x4E2A;worker&#xFF1A;</p>
+<pre><code class="lang-sh">$ rq worker high default low
+*** Listening <span class="hljs-keyword">for</span> work on high, default, low
+Got send_newsletter(<span class="hljs-string">&apos;me@nvie.com&apos;</span>) from default
+Job ended normally without result
+*** Listening <span class="hljs-keyword">for</span> work on high, default, low
+...
+</code></pre>
+<p>Workers&#x5C06;&#x5728;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x4E2D;&#x8BFB;&#x53D6;&#x7ED9;&#x5B9A;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#xFF08;&#x987A;&#x5E8F;&#x5F88;&#x91CD;&#x8981;&#xFF09;&#xFF0C;&#x5F53;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x5B8C;&#x6210;&#x540E;&#x7B49;&#x5F85;&#x65B0;&#x5DE5;&#x4F5C;&#x5230;&#x8FBE;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;worker&#x4E00;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x4EFD;&#x5DE5;&#x4F5C;&#x3002;&#x5728;&#x4E00;&#x4E2A;worker&#x4E2D;&#xFF0C;&#x6CA1;&#x6709;&#x5E76;&#x53D1;&#x5904;&#x7406;&#x3002;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x540C;&#x65F6;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#xFF0C;&#x53EA;&#x9700;&#x542F;&#x52A8;&#x66F4;&#x591A;workers&#x3002;</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="https://python-rq.org/patterns/supervisor/" target="_blank">Supervisor</a>&#x6216; <a href="https://python-rq.org/patterns/systemd/" target="_blank">systemd</a>&#x7B49;&#x6D41;&#x7A0B;&#x7BA1;&#x7406;&#x5668;&#x5728;&#x751F;&#x4EA7;&#x4E2D;&#x8FD0;&#x884C;RQ worker&#x3002;</p>
+<h3 id="burst&#x6A21;&#x5F0F;">Burst&#x6A21;&#x5F0F;</h3>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;workers&#x5C06;&#x7ACB;&#x5373;&#x5F00;&#x59CB;&#x5DE5;&#x4F5C;&#xFF0C;&#x5728;&#x4ED6;&#x4EEC;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x65F6;&#x963B;&#x6B62;&#x5E76;&#x7B49;&#x5F85;&#x65B0;&#x4EFB;&#x52A1;&#x3002;workers&#x4E5F;&#x53EF;&#x4EE5;&#x4EE5;<strong><em>&#x7A81;&#x53D1;&#x6A21;&#x5F0F;</em></strong>&#x542F;&#x52A8;&#x4EE5;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x5F53;&#x524D;&#x53EF;&#x7528;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x5728;&#x6240;&#x6709;&#x7ED9;&#x5B9A;&#x961F;&#x5217;&#x4E3A;&#x7A7A;&#x540E;&#x7ACB;&#x5373;&#x9000;&#x51FA;&#x3002;</p>
+<pre><code class="lang-sh">$ rq worker --burst high default low
+*** Listening <span class="hljs-keyword">for</span> work on high, default, low
+Got send_newsletter(<span class="hljs-string">&apos;me@nvie.com&apos;</span>) from default
+Job ended normally without result
+No more work, burst finished.
+Registering death.
+</code></pre>
+<p>&#x8FD9;&#x5BF9;&#x4E8E;&#x9700;&#x8981;&#x5B9A;&#x671F;&#x5904;&#x7406;&#x7684;&#x6279;&#x5904;&#x7406;&#x4EFB;&#x52A1;&#x975E;&#x5E38;&#x6709;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x53EA;&#x662F;&#x5728;&#x9AD8;&#x5CF0;&#x671F;&#x4E34;&#x65F6;&#x6269;&#x5C55;workers&#x3002;</p>
+<h3 id="worker&#x53C2;&#x6570;">worker&#x53C2;&#x6570;</h3>
+<p>&#x9664;&#x6B64;<code>--burst</code>&#x4E4B;&#x5916;&#xFF0C;<code>rq worker</code>&#x8FD8;&#x63A5;&#x53D7;&#x4EE5;&#x4E0B;&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li><code>--url</code>&#x6216;<code>-u</code>&#xFF1A;&#x63CF;&#x8FF0;Redis&#x8FDE;&#x63A5;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x7684;URL&#xFF08;&#x4F8B;&#x5982;<code>rq worker --url redis://:secrets@example.com:1234/9</code>&#xFF09;</li>
+<li><code>--path</code>&#x6216;<code>-P</code>&#xFF1A;&#x652F;&#x6301;&#x591A;&#x4E2A;&#x5BFC;&#x5165;&#x8DEF;&#x5F84;&#xFF08;&#x4F8B;&#x5982;<code>rq worker --path foo --path bar</code>&#xFF09;</li>
+<li><code>--config</code>&#x6216;<code>-c</code>&#xFF1A;&#x5305;&#x542B;RQ&#x8BBE;&#x7F6E;&#x7684;&#x6A21;&#x5757;&#x7684;&#x8DEF;&#x5F84;&#x3002;</li>
+<li><code>--results-ttl</code>&#xFF1A;&#x4EFB;&#x52A1;&#x7ED3;&#x679C;&#x5C06;&#x4FDD;&#x7559;&#x6B64;&#x79D2;&#x6570;&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A;500&#xFF09;&#x3002;</li>
+<li><code>--worker-class</code>&#x6216;<code>-w</code>&#xFF1A;&#x4F7F;&#x7528;&#x7684;RQ Worker&#x7C7B;&#xFF08;&#x4F8B;&#x5982;<code>rq worker --worker-class &apos;foo.bar.MyWorker&apos;</code>&#xFF09;</li>
+<li><code>--job-class</code>&#x6216;<code>-j</code>&#xFF1A;&#x4F7F;&#x7528;&#x7684;RQ Job&#x7C7B;&#x3002;</li>
+<li><code>--queue-class</code>&#xFF1A;&#x4F7F;&#x7528;&#x7684;RQ&#x961F;&#x5217;&#x7C7B;&#x3002;</li>
+<li><code>--connection-class</code>&#xFF1A;&#x4F7F;&#x7528;&#x7684;Redis&#x8FDE;&#x63A5;&#x7C7B;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;<code>redis.StrictRedis</code>&#x3002;</li>
+<li><code>--log-format</code>&#xFF1A;&#x5DE5;&#x4F5C;&#x65E5;&#x5FD7;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>&apos;%(asctime)s %(message)s&apos;</code></li>
+<li><code>--date-format</code>&#xFF1A;&#x5DE5;&#x4F5C;&#x65E5;&#x5FD7;&#x7684;&#x65E5;&#x671F;&#x65F6;&#x95F4;&#x683C;&#x5F0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>&apos;%H:%M:%S&apos;</code></li>
+<li><code>--disable-job-desc-logging</code>&#xFF1A;&#x5173;&#x95ED;&#x4EFB;&#x52A1;&#x8BF4;&#x660E;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x3002;</li>
+<li><code>--max-jobs</code>&#xFF1A;&#x6267;&#x884C;&#x7684;&#x6700;&#x5927;&#x4EFB;&#x52A1;&#x6570;&#x3002;</li>
+</ul>
+<h2 id="worker&#x5185;&#x90E8;">worker&#x5185;&#x90E8;</h2>
+<h3 id="worker&#x751F;&#x547D;&#x5468;&#x671F;">worker&#x751F;&#x547D;&#x5468;&#x671F;</h3>
+<p>worker&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5305;&#x62EC;&#x51E0;&#x4E2A;&#x9636;&#x6BB5;&#xFF1A;</p>
+<ol>
+<li><strong>&#x542F;&#x52A8;</strong>&#xFF1A;&#x52A0;&#x8F7D;Python&#x73AF;&#x5883;&#x3002;</li>
+<li><strong>&#x6CE8;&#x518C;</strong>&#xFF1A;worker&#x5C06;&#x81EA;&#x5DF1;&#x6CE8;&#x518C;&#x5230;&#x7CFB;&#x7EDF;&#xFF0C;&#x4EE5;&#x4FBF;&#x77E5;&#x9053;&#x8BE5;worker&#x3002;</li>
+<li><strong>&#x76D1;&#x542C;</strong>&#xFF1A;&#x4ECE;&#x4EFB;&#x4F55;&#x7ED9;&#x5B9A;&#x7684;Redis&#x961F;&#x5217;&#x4E2D;&#x83B7;&#x53D6;&#x4EFB;&#x52A1;&#x3002;&#x5982;&#x679C;&#x6240;&#x6709;&#x961F;&#x5217;&#x90FD;&#x4E3A;&#x7A7A;&#x4E14;worker&#x4EE5;&#x7A81;&#x53D1;&#x6A21;&#x5F0F;&#x8FD0;&#x884C;&#xFF0C;&#x5219;&#x7ACB;&#x5373;&#x9000;&#x51FA;&#x3002;&#x5426;&#x5219;&#xFF0C;&#x7B49;&#x5F85;&#x4EFB;&#x52A1;&#x5230;&#x6765;&#x3002;</li>
+<li><strong>&#x51C6;&#x5907;&#x6267;&#x884C;&#x4EFB;&#x52A1;</strong>&#xFF1A;worker&#x544A;&#x8BC9;&#x7CFB;&#x7EDF;&#x5B83;&#x5C06;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x5176;&#x72B6;&#x6001;&#x4E3A;<code>busy</code>&#xFF0C;&#x5E76;&#x5728;<code>StartedJobRegistry</code>&#x4E2D;&#x6CE8;&#x518C;&#x4EFB;&#x52A1;&#x6765;&#x5F00;&#x59CB;&#x5DE5;&#x4F5C;&#x3002;</li>
+<li><strong>fork&#x5B50;&#x8FDB;&#x7A0B;</strong>&#xFF1A;&#x590D;&#x5236;&#x4E00;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#xFF08;work horse&#xFF09;&#x4EE5;&#x5728;&#x6545;&#x969C;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x6267;&#x884C;&#x5B9E;&#x9645;&#x4EFB;&#x52A1;&#x3002;</li>
+<li><strong>&#x5904;&#x7406;&#x5DE5;&#x4F5C;</strong>&#xFF1A;&#x5728;&#x5B50;&#x8FDB;&#x7A0B;&#xFF08;work horse&#xFF09;&#x4E2D;&#x6267;&#x884C;&#x5B9E;&#x9645;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</li>
+<li><strong>&#x6E05;&#x7406;&#x4EFB;&#x52A1;&#x6267;&#x884C;</strong>&#x3002;worker&#x5C06;&#x5176;&#x72B6;&#x6001;&#x8BBE;&#x7F6E;&#x4E3A;<code>idle</code>&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x4EFB;&#x52A1;&#x53CA;&#x5176;&#x7ED3;&#x679C;&#x7684;&#x8FC7;&#x671F;&#x65F6;&#x95F4;&#xFF08;&#x57FA;&#x4E8E;<code>result_ttl</code>&#xFF09;&#x3002;&#x4EFB;&#x52A1;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x4F1A;&#x4ECE;<code>StartedJobRegistry</code>&#x4E2D;&#x5220;&#x9664;&#x4EFB;&#x52A1;&#x5E76;&#x4E14;&#x6DFB;&#x52A0;&#x5230;<code>FailedJobRegistry</code>&#x4E2D;&#xFF0C;&#x4EFB;&#x52A1;&#x5931;&#x8D25;&#x540E;&#xFF0C;&#x6DFB;&#x52A0;&#x5230;<code>FailedJobRegistry</code>&#x4E2D;&#x3002;</li>
+<li><strong>&#x5FAA;&#x73AF;</strong>&#xFF1A;&#x4ECE;&#x7B2C;3&#x6B65;&#x5F00;&#x59CB;&#x91CD;&#x590D;&#x3002;</li>
+</ol>
+<h3 id="&#x6027;&#x80FD;&#x8BF4;&#x660E;">&#x6027;&#x80FD;&#x8BF4;&#x660E;</h3>
+<p>&#x57FA;&#x672C;&#x4E0A;<code>rq worker</code>shell&#x811A;&#x672C;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;fetch-fork-execute&#x5FAA;&#x73AF;&#x3002;&#x5F53;&#x4F60;&#x7684;&#x5F88;&#x591A;&#x5DE5;&#x4F5C;&#x90FD;&#x8FDB;&#x884C;&#x5197;&#x957F;&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x6216;&#x8005;&#x5B83;&#x4EEC;&#x90FD;&#x4F9D;&#x8D56;&#x4E8E;&#x540C;&#x4E00;&#x7EC4;&#x6A21;&#x5757;&#x65F6;&#xFF0C;&#x6BCF;&#x6B21;&#x8FD0;&#x884C;&#x4EFB;&#x52A1;&#x65F6;&#x90FD;&#x8981;&#x652F;&#x4ED8;&#x5F00;&#x9500;&#xFF08;&#x56E0;&#x4E3A;&#x4F60;&#x5728;fork&#x4E4B;&#x540E;&#x8FDB;&#x884C;&#x4E86;&#x5BFC;&#x5165;&#xFF09;&#x3002;&#x8FD9;&#x5F88;&#x5E72;&#x51C0;&#xFF0C;&#x56E0;&#x4E3A;RQ&#x4E0D;&#x4F1A;&#x4EE5;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x6CC4;&#x6F0F;&#x5185;&#x5B58;&#xFF0C;&#x4F46;&#x4E5F;&#x4F1A;&#x5F88;&#x6162;&#x3002;</p>
+<p>&#x53EF;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x8FD9;&#x7C7B;&#x4EFB;&#x52A1;&#x7684;&#x541E;&#x5410;&#x91CF;&#x6027;&#x80FD;&#x7684;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x662F;&#x5728;fork&#x4E4B;&#x524D;&#x5BFC;&#x5165;&#x5FC5;&#x8981;&#x7684;&#x6A21;&#x5757;&#x3002;&#x65E0;&#x6CD5;&#x544A;&#x8BC9;RQ worker&#x4E3A;&#x4F60;&#x6267;&#x884C;&#x6B64;&#x8BBE;&#x7F6E;&#xFF0C;&#x4F46;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x5F00;&#x59CB;&#x5DE5;&#x4F5C;&#x5FAA;&#x73AF;&#x4E4B;&#x524D;&#x81EA;&#x5DF1;&#x5B8C;&#x6210;&#x6B64;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x4E3A;&#x6B64;&#xFF0C;&#x8BF7;&#x63D0;&#x4F9B;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x4EFB;&#x52A1;&#x811A;&#x672C;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x4F7F;&#x7528;<code>rq worker</code>&#xFF09;&#x3002;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x5B9E;&#x73B0;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment">#!/usr/bin/env python</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> rq <span class="hljs-keyword">import</span> Connection, Worker
+
+<span class="hljs-comment"># &#x9884;&#x5148;&#x5BFC;&#x5165;&#x6A21;&#x5757;</span>
+<span class="hljs-keyword">import</span> library_that_you_want_preloaded
+
+<span class="hljs-comment"># &#x63D0;&#x4F9B;&#x961F;&#x5217;&#x540D;&#x79F0;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;rq worker</span>
+<span class="hljs-keyword">with</span> Connection():
+    qs = sys.argv[<span class="hljs-number">1</span>:] <span class="hljs-keyword">or</span> [<span class="hljs-string">&apos;default&apos;</span>]
+
+    w = Worker(qs)
+    w.work()
+</code></pre>
+<h3 id="worker&#x540D;&#x79F0;">worker&#x540D;&#x79F0;</h3>
+<p>worker&#x4EE5;&#x5176;&#x540D;&#x79F0;&#x6CE8;&#x518C;&#x5230;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD9;&#x4E9B;&#x540D;&#x79F0;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x671F;&#x95F4;&#x968F;&#x673A;&#x751F;&#x6210;&#xFF08;&#x8BF7;&#x53C2;&#x9605;<a href="https://python-rq.org/docs/monitoring/" target="_blank">&#x76D1;&#x63A7;</a>&#xFF09;&#x3002;&#x8981;&#x8986;&#x76D6;&#x6B64;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x8BF7;&#x5728;&#x542F;&#x52A8;worker&#x65F6;&#x6307;&#x5B9A;&#x540D;&#x79F0;&#xFF0C;&#x6216;&#x4F7F;&#x7528;<code>--name</code>&#x5BA2;&#x6237;&#x7AEF;&#x9009;&#x9879;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> redis <span class="hljs-keyword">import</span> Redis
+<span class="hljs-keyword">from</span> rq <span class="hljs-keyword">import</span> Queue, Worker
+
+redis = Redis()
+queue = Queue(<span class="hljs-string">&apos;queue_name&apos;</span>)
+
+<span class="hljs-comment"># Start a worker with a custom name</span>
+worker = Worker([queue], connection=redis, name=<span class="hljs-string">&apos;foo&apos;</span>)
+</code></pre>
+<h3 id="&#x68C0;&#x7D22;worker&#x4FE1;&#x606F;">&#x68C0;&#x7D22;worker&#x4FE1;&#x606F;</h3>
+<p><em>&#x5728;&#x7248;&#x672C;0.10.0&#x4E2D;&#x66F4;&#x65B0;&#x3002;</em></p>
+<p><code>Worker</code>&#x5B9E;&#x4F8B;&#x5C06;&#x5176;&#x8FD0;&#x884C;&#x65F6;&#x4FE1;&#x606F;&#x5B58;&#x50A8;&#x5728;Redis&#x4E2D;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x68C0;&#x7D22;&#x5B83;&#x4EEC;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> redis <span class="hljs-keyword">import</span> Redis
+<span class="hljs-keyword">from</span> rq <span class="hljs-keyword">import</span> Queue, Worker
+
+<span class="hljs-comment"># Returns all workers registered in this connection</span>
+redis = Redis()
+workers = Worker.all(connection=redis)
+
+<span class="hljs-comment"># Returns all workers in this queue (new in version 0.10.0)</span>
+queue = Queue(<span class="hljs-string">&apos;queue_name&apos;</span>)
+workers = Worker.all(queue=queue)
+worker = workers[<span class="hljs-number">0</span>]
+print(worker.name)
+</code></pre>
+<p>&#x9664;<code>worker.name</code>&#x4E4B;&#x5916;&#xFF0C;worker&#x4EBA;&#x8FD8;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x5C5E;&#x6027;&#xFF1A;</p>
+<ul>
+<li><code>hostname</code> - &#x8FD0;&#x884C;&#x6B64;&#x5DE5;&#x4F5C;&#x7A0B;&#x5E8F;&#x7684;&#x4E3B;&#x673A;</li>
+<li><code>pid</code> - worker&#x7684;&#x8FDB;&#x7A0B;ID</li>
+<li><code>queues</code> - worker&#x6B63;&#x5728;&#x4FA6;&#x542C;&#x5DE5;&#x4F5C;&#x7684;&#x961F;&#x5217;</li>
+<li><code>state</code>-&#x53EF;&#x80FD;&#x7684;&#x72B6;&#x6001;&#x662F;<code>suspended</code>&#xFF0C;<code>started</code>&#xFF0C;<code>busy</code>&#x548C;<code>idle</code></li>
+<li><code>current_job</code> - &#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#xFF08;&#x5982;&#x679C;&#x6709;&#x7684;&#x8BDD;&#xFF09;</li>
+<li><code>last_heartbeat</code> - worker&#x6700;&#x540E;&#x7684;&#x66F4;&#x65B0;&#x65F6;&#x95F4;</li>
+<li><code>birth_date</code> - worker&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x65F6;&#x95F4;</li>
+<li><code>successful_job_count</code> - &#x6210;&#x529F;&#x5B8C;&#x6210;&#x7684;&#x4EFB;&#x52A1;&#x6570;&#x91CF;</li>
+<li><code>failed_job_count</code> - &#x5904;&#x7406;&#x7684;&#x5931;&#x8D25;&#x4EFB;&#x52A1;&#x6570;</li>
+<li><code>total_working_time</code> - &#x6267;&#x884C;&#x4EFB;&#x52A1;&#x6240;&#x82B1;&#x8D39;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x4EE5;&#x79D2;&#x4E3A;&#x5355;&#x4F4D;</li>
+</ul>
+<p><em>&#x7248;&#x672C;0.10.0&#x4E2D;&#x7684;&#x65B0;&#x529F;&#x80FD;&#x3002;</em></p>
+<p>&#x5982;&#x679C;&#x60A8;&#x53EA;&#x60F3;&#x77E5;&#x9053;&#x7528;&#x4E8E;&#x76D1;&#x63A7;&#x76EE;&#x7684;&#x7684;worker&#x6570;&#x91CF;&#xFF0C; <code>Worker.count()</code>&#x90A3;&#x4E48;&#x6027;&#x80FD;&#x8981;&#x9AD8;&#x5F97;&#x591A;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> redis <span class="hljs-keyword">import</span> Redis
+<span class="hljs-keyword">from</span> rq <span class="hljs-keyword">import</span> Worker
+
+redis = Redis()
+
+<span class="hljs-comment"># &#x8BA1;&#x7B97;redis&#x4E2D;&#x7684;worker&#x8FDE;&#x63A5;&#x6570;</span>
+workers = Worker.count(connection=redis)
+
+<span class="hljs-comment"># &#x8BA1;&#x7B97;&#x6307;&#x5B9A;&#x961F;&#x5217;&#x4E2D;&#x7684;worker&#x6570;</span>
+queue = Queue(<span class="hljs-string">&apos;queue_name&apos;</span>, connection=redis)
+workers = Worker.all(queue=queue)
+</code></pre>
+<h3 id="worker&#x7EDF;&#x8BA1;">worker&#x7EDF;&#x8BA1;</h3>
+<p><em>0.9.0&#x7248;&#x4E2D;&#x7684;&#x65B0;&#x529F;&#x80FD;&#x3002;</em></p>
+<p>&#x5982;&#x679C;&#x8981;&#x68C0;&#x67E5;&#x961F;&#x5217;&#x7684;&#x5229;&#x7528;&#x7387;&#xFF0C;<code>Worker</code>&#x5B9E;&#x4F8B;&#x4F1A;&#x5B58;&#x50A8;&#x4E00;&#x4E9B;&#x6709;&#x7528;&#x7684;&#x4FE1;&#x606F;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> rq.worker <span class="hljs-keyword">import</span> Worker
+worker = Worker.find_by_key(<span class="hljs-string">&apos;rq:worker:name&apos;</span>)
+
+worker.successful_job_count  <span class="hljs-comment"># &#x6210;&#x529F;&#x7684;&#x4EFB;&#x52A1;&#x4E66;</span>
+worker.failed_job_count <span class="hljs-comment"># &#x5931;&#x8D25;&#x7684;&#x4EFB;&#x52A1;&#x4E66;</span>
+worker.total_working_time  <span class="hljs-comment"># &#x6267;&#x884C;&#x4EFB;&#x52A1;&#x6240;&#x82B1;&#x8D39;&#x7684;&#x65F6;&#x95F4; (&#x5355;&#x4F4D;&#xFF1A;&#x79D2;)</span>
+</code></pre>
+<h2 id="&#x66F4;&#x597D;&#x7684;worker&#x5904;&#x7406;&#x6807;&#x9898;">&#x66F4;&#x597D;&#x7684;worker&#x5904;&#x7406;&#x6807;&#x9898;</h2>
+<p>&#x5B89;&#x88C5;&#x7B2C;&#x4E09;&#x65B9;&#x8F6F;&#x4EF6;&#x5305;<code>setproctitle</code>&#x540E;&#xFF0C;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B;&#x5C06;&#x5177;&#x6709;&#x66F4;&#x597D;&#x7684;&#x6807;&#x9898;&#xFF08;&#x7531;ps&#x548C;top&#x7B49;&#x7CFB;&#x7EDF;&#x5DE5;&#x5177;&#x663E;&#x793A;&#xFF09;&#xFF1A;</p>
+<pre><code>pip install setproctitle
+</code></pre><h2 id="&#x53D6;&#x4E0B;worker">&#x53D6;&#x4E0B;worker</h2>
+<p>&#x5982;&#x679C;&#x5DE5;&#x4F5C;&#x4EBA;&#x5458;&#x5728;&#x4EFB;&#x4F55;&#x65F6;&#x5019;&#x63A5;&#x6536;&#x5230;<code>SIGINT</code>&#xFF08;&#x901A;&#x8FC7;Ctrl + C&#xFF09;&#x6216;<code>SIGTERM</code>&#xFF08;&#x901A;&#x8FC7; <code>kill</code>&#xFF09;&#xFF0C;worker&#x7B49;&#x5F85;&#x5F53;&#x524D;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#x5B8C;&#x6210;&#xFF0C;&#x505C;&#x6B62;&#x5DE5;&#x4F5C;&#x5FAA;&#x73AF;&#x5E76;&#x4F18;&#x96C5;&#x5730;&#x6CE8;&#x518C;&#x81EA;&#x5DF1;&#x7684;&#x6B7B;&#x4EA1;&#x3002;</p>
+<p>&#x5982;&#x679C;&#xFF0C;&#x5728;&#x5220;&#x9664;&#x9636;&#x6BB5;&#xFF0C;&#x518D;&#x6B21;&#x6536;&#x5230;<code>SIGINT</code>&#x6216;<code>SIGTERM</code>&#xFF0C;worker&#x5C06;&#x5F3A;&#x884C;&#x7EC8;&#x6B62;&#x5B50;&#x8FDB;&#x7A0B;&#xFF08;&#x53D1;&#x9001;&#x5B83;<code>SIGKILL</code>&#xFF09;&#xFF0C;&#x4F46;&#x4ECD;&#x5C06;&#x5C1D;&#x8BD5;&#x6CE8;&#x518C;&#x81EA;&#x5DF1;&#x7684;&#x6B7B;&#x4EA1;&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2>
+<p>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x914D;&#x7F6E;<code>rq worker</code>&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x521B;&#x5EFA;Python&#x6587;&#x4EF6;&#x6765;&#x5B8C;&#x6210;&#x6B64;&#x64CD;&#x4F5C; <code>settings.py</code>&#xFF1A;</p>
+<pre><code class="lang-python">REDIS_URL = <span class="hljs-string">&apos;redis://localhost:6379/1&apos;</span>
+
+<span class="hljs-comment"># &#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684;redis&#x6570;&#x636E;&#x5E93;</span>
+<span class="hljs-comment"># REDIS_HOST = &apos;redis.example.com&apos;</span>
+<span class="hljs-comment"># REDIS_PORT = 6380</span>
+<span class="hljs-comment"># REDIS_DB = 3</span>
+<span class="hljs-comment"># REDIS_PASSWORD = &apos;very secret&apos;</span>
+
+<span class="hljs-comment"># &#x76D1;&#x542C;&#x7684;&#x961F;&#x5217;</span>
+QUEUES = [<span class="hljs-string">&apos;high&apos;</span>, <span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-string">&apos;low&apos;</span>]
+
+<span class="hljs-comment"># &#x5982;&#x679C;&#x60A8;&#x4F7F;&#x7528;Sentry&#x6536;&#x96C6;&#x8FD0;&#x884C;&#x65F6;&#x5F02;&#x5E38;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x53BB;&#x914D;&#x7F6E;RQ</span>
+<span class="hljs-comment"># The &apos;sync+&apos; prefix is required for raven: https://github.com/nvie/rq/issues/350#issuecomment-43592410</span>
+SENTRY_DSN = <span class="hljs-string">&apos;sync+http://public:secret@example.com/1&apos;</span>
+
+<span class="hljs-comment"># &#x81EA;&#x5B9A;&#x4E49;worker&#x540D;&#x79F0;</span>
+<span class="hljs-comment"># NAME = &apos;worker-1024&apos;</span>
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x5C55;&#x793A;&#x4E86;&#x5F53;&#x524D;&#x652F;&#x6301;&#x7684;&#x6240;&#x6709;&#x9009;&#x9879;&#x3002;</p>
+<p><em>&#x6CE8;&#x610F;&#xFF1A;</em> <code>QUEUES</code> <em>&#x548C;</em> <code>REDIS_PASSWORD</code> <em>&#x8BBE;&#x7F6E;&#x662F;0.3.3&#x4EE5;&#x540E;&#x7684;&#x65B0;&#x7279;&#x6027;&#x3002;</em></p>
+<p>&#x6307;&#x5B9A;&#x4ECE;&#x54EA;&#x4E2A;&#x6A21;&#x5757;&#x8BFB;&#x53D6;&#x8BBE;&#x7F6E;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;<code>-c</code>&#x9009;&#x9879;&#xFF1A;</p>
+<pre><code class="lang-sh">$ rq worker -c settings
+</code></pre>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;worker&#x7C7B;">&#x81EA;&#x5B9A;&#x4E49;Worker&#x7C7B;</h2>
+<p>&#x6709;&#x65F6;&#x60A8;&#x60F3;&#x8981;&#x81EA;&#x5B9A;&#x4E49;worker&#x7684;&#x884C;&#x4E3A;&#x3002;&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x4E00;&#x4E9B;&#x66F4;&#x5E38;&#x89C1;&#x7684;&#x8BF7;&#x6C42;&#x662F;&#xFF1A;</p>
+<ol>
+<li>&#x5728;&#x8FD0;&#x884C;&#x4EFB;&#x52A1;&#x4E4B;&#x524D;&#x7BA1;&#x7406;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x3002;</li>
+<li>&#x4F7F;&#x7528;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x6A21;&#x578B;<code>os.fork</code>&#x3002;</li>
+<li>&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x5E76;&#x53D1;&#x6A21;&#x578B;&#xFF0C;&#x5982; <code>multiprocessing</code>&#x6216;<code>gevent</code>&#x3002;</li>
+</ol>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8BE5;<code>-w</code>&#x9009;&#x9879;&#x6307;&#x5B9A;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x5176;&#x4ED6;&#x5DE5;&#x4F5C;&#x7C7B;&#xFF1A;</p>
+<pre><code class="lang-sh">$ rq worker -w <span class="hljs-string">&apos;path.to.GeventWorker&apos;</span>
+</code></pre>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x4EFB;&#x52A1;&#x548C;&#x961F;&#x5217;&#x7C7B;">&#x81EA;&#x5B9A;&#x4E49;&#x4EFB;&#x52A1;&#x548C;&#x961F;&#x5217;&#x7C7B;</h2>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x544A;&#x8BC9;worker&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x6765;&#x5904;&#x7406;&#x4EFB;&#x52A1;&#x548C;&#x961F;&#x5217;<code>--job-class</code>&#x6216;<code>--queue-class</code>&#x3002;</p>
+<pre><code class="lang-sh">$ rq worker --job-class <span class="hljs-string">&apos;custom.JobClass&apos;</span> --queue-class <span class="hljs-string">&apos;custom.QueueClass&apos;</span>
+</code></pre>
+<p>&#x5728;&#x6DFB;&#x52A0;&#x961F;&#x5217;&#x4EFB;&#x52A1;&#x65F6;&#x4E0D;&#x8981;&#x5FD8;&#x8BB0;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x7C7B;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> rq <span class="hljs-keyword">import</span> Queue
+<span class="hljs-keyword">from</span> rq.job <span class="hljs-keyword">import</span> Job
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomJob</span><span class="hljs-params">(Job)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomQueue</span><span class="hljs-params">(Queue)</span>:</span>
+    job_class = CustomJob
+
+queue = CustomQueue(<span class="hljs-string">&apos;default&apos;</span>, connection=redis_conn)
+queue.enqueue(some_func)
+</code></pre>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;deathpenalty&#x7C7B;">&#x81EA;&#x5B9A;&#x4E49;DeathPenalty&#x7C7B;</h2>
+<p>&#x5F53;&#x4EFB;&#x52A1;&#x8D85;&#x65F6;&#x65F6;&#xFF0C;worker&#x5C06;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;&#x63D0;&#x4F9B;&#x7684;&#x65B9;&#x6CD5;<code>death_penalty_class</code>&#xFF08;&#x9ED8;&#x8BA4;&#x503C;: <code>UnixSignalDeathPenalty</code>&#xFF09;&#x5C06;&#x5176;&#x7EC8;&#x6B62;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5E0C;&#x671B;&#x5C1D;&#x8BD5;&#x4EE5;&#x7279;&#x5B9A;&#x4E8E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x6216;&#x201C;&#x66F4;&#x6E05;&#x6D01;&#x201D;&#x7684;&#x65B9;&#x5F0F;&#x6740;&#x6B7B;&#x4EFB;&#x52A1;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x8986;&#x76D6;&#x6B64;&#x9879;&#x3002;</p>
+<p>DeathPenalty&#x7C7B;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x53C2;&#x6570;&#x6784;&#x9020; <code>BaseDeathPenalty(timeout, JobTimeoutException, job_id=job.id)</code></p>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;&#x5904;&#x7406;">&#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;&#x5904;&#x7406;</h2>
+<p>&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x4EFB;&#x52A1;&#x4EE5;&#x4E0D;&#x540C;&#x65B9;&#x5F0F;&#x5904;&#x7406;&#x9519;&#x8BEF;&#xFF0C;&#x6216;&#x8005;&#x53EA;&#x662F;&#x60F3;&#x8981;&#x81EA;&#x5B9A;&#x4E49;RQ&#x7684;&#x9ED8;&#x8BA4;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x884C;&#x4E3A;&#xFF0C;&#x4F7F;&#x7528;<code>--exception-handler</code>&#x9009;&#x9879;&#x8FD0;&#x884C;<code>rq worker</code>&#xFF1A;</p>
+<pre><code class="lang-sh">$ rq worker --exception-handler <span class="hljs-string">&apos;path.to.my.ErrorHandler&apos;</span>
+
+<span class="hljs-comment"># Multiple exception handlers is also supported</span>
+$ rq worker --exception-handler <span class="hljs-string">&apos;path.to.my.ErrorHandler&apos;</span> --exception-handler <span class="hljs-string">&apos;another.ErrorHandler&apos;</span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x8981;&#x7981;&#x7528;RQ&#x7684;&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;<code>--disable-default-exception-handler</code>&#x9009;&#x9879;&#xFF1A;</p>
+<pre><code class="lang-python">$  rq worker --exception-handler <span class="hljs-string">&apos;path.to.my.ErrorHandler&apos;</span> --disable-default-exception-handler
+</code></pre>
+</body></html>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1 队列.html" class="navigation navigation-prev " aria-label="Previous page: 1 队列">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3 结果.html" class="navigation navigation-next " aria-label="Next page: 3 结果">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2 Workers","level":"1.3","depth":1,"next":{"title":"3 结果","level":"1.4","depth":1,"path":"chapter/3 结果.md","ref":"chapter/3 结果.md","articles":[]},"previous":{"title":"1 队列","level":"1.2","depth":1,"path":"chapter/1 队列.md","ref":"chapter/1 队列.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/rq-docs-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"image/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"image/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"image/favicon.ico","lightbox":{"jquery":true},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","links":{"sidebar":{"Home":"https://github.com/luolingchun/rq-docs-cn"}},"gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"chapter/2 Workers.md","mtime":"2019-08-19T07:06:06.624Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T07:27:41.356Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-hide-element/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-auto-scroll-table/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lightbox/jquery.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lightbox/lightbox.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
